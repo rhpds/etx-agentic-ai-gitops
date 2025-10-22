@@ -1,0 +1,18 @@
+{{ if .Values.workspace -}}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-bootstrap
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: {{ .Values.cluster.repoURL }}
+    targetRevision: {{ .Values.cluster.revision }}
+    path: {{ .Values.cluster.path }}
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated: {}
+{{- end }}
