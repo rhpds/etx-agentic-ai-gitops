@@ -3,7 +3,7 @@ resources:
   - namespaces.yaml
 
 helmGlobals:
-  chartHome: ../helm
+  chartHome: ./helm
 
 helmCharts:
   - name: cluster-observability-operator
