@@ -2,14 +2,14 @@
 resources:
   - namespaces.yaml
 
-# helmGlobals:
-#   chartHome: ../helm
+helmGlobals:
+  chartHome: ../helm
 
-# helmCharts:
-#   - name: cluster-observability-operator
-#     includeCRDs: true
-#     releaseName: cluster-observability-operator
-#     valuesFile: values.yaml
+helmCharts:
+  - name: cluster-observability-operator
+    includeCRDs: true
+    releaseName: cluster-observability-operator
+    valuesFile: values.yaml
 
 #   - name: grafana-operator
 #     includeCRDs: true
