@@ -23,7 +23,7 @@ spec:
     total:
       limits:
         memory: {{ .Values.tempoStack.resources.total.limits.memory }}
-        cpu: {{ .Values.tempoStack.resources.total.limits.cpu }}
+        cpu: '{{ .Values.tempoStack.resources.total.limits.cpu }}'
   tenants:
     mode: {{ .Values.tempoStack.tenants.mode }}
     authentication:
