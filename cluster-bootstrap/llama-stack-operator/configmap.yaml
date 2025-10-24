@@ -25,10 +25,6 @@ data:
     # leaderElectionReleaseOnCancel: true
 kind: ConfigMap
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
   labels:
     app.kubernetes.io/name: llama-stack-k8s-operator
-    argocd.argoproj.io/instance: llama-stack
   name: llama-stack-k8s-operator-manager-config
-  namespace: llama-stack-k8s-operator-controller-manager

@@ -2,11 +2,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
   labels:
     app.kubernetes.io/name: llama-stack-k8s-operator
-    argocd.argoproj.io/instance: llama-stack
   name: llama-stack-k8s-operator-manager-role
 rules:
 - apiGroups:
@@ -97,7 +94,6 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: llama-stack-k8s-operator
-    argocd.argoproj.io/instance: llama-stack
   name: llama-stack-k8s-operator-metrics-reader
 rules:
 - nonResourceURLs:
@@ -110,7 +106,6 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: llama-stack-k8s-operator
-    argocd.argoproj.io/instance: llama-stack
   name: llama-stack-k8s-operator-proxy-role
 rules:
 - apiGroups:
@@ -131,7 +126,6 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app.kubernetes.io/name: llama-stack-k8s-operator
-    argocd.argoproj.io/instance: llama-stack
   name: llama-stack-k8s-operator-manager-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -147,7 +141,6 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app.kubernetes.io/name: llama-stack-k8s-operator
-    argocd.argoproj.io/instance: llama-stack
   name: llama-stack-k8s-operator-proxy-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io

@@ -1,4 +1,9 @@
 ---
+namespace: llama-stack-k8s-operator-controller-manager
+
+commonAnnotations:
+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
 resources:
   - crd.yaml
   - namespace.yaml
@@ -8,6 +13,3 @@ resources:
   - service.yaml
   - configmap.yaml
   - deployment.yaml
-
-commonAnnotations:
-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
