@@ -18,7 +18,7 @@ tempoStack:
     total:
       limits:
         memory: 10Gi
-        cpu: 5000m
+        cpu: 5
   
   # Tenant configuration
   tenants:
