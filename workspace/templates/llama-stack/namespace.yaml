@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.username }}-llama-stack
+  labels:
+    openshift.io/cluster-monitoring: "true"
+spec: {}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ .Values.username }}-llama-stack-edit
+  namespace: {{ .Values.username }}-llama-stack
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: edit
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: {{ .Values.username }}

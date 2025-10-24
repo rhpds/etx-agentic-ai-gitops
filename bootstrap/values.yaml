@@ -6,6 +6,8 @@ user:
   count: 2
   prefix: user
 
+tavilySearchApiKey: your-tavily-search-api-key-here
+
 deployer:
   domain: apps.cluster-guid.sandbox.opentlc.com
   apiUrl: https://api.cluster-guid.sandbox.opentlc.com:6443
