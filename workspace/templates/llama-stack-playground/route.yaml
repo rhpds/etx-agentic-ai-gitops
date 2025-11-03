@@ -1,0 +1,18 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: llama-stack-playground
+  namespace: {{ .Values.username }}-llama-stack
+  labels:
+    app.kubernetes.io/name: llama-stack-playground
+spec:
+  to:
+    kind: Service
+    name: llama-stack-playground
+    weight: 100
+  port:
+    targetPort: proxy
+  tls:
+    termination: reencrypt
+    insecureEdgeTerminationPolicy: Redirect
