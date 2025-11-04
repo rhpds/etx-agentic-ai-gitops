@@ -11,5 +11,6 @@ commonAnnotations:
 #   argocd.argoproj.io/sync-options: Prune=false
 
 resources:
+- rbac.yaml
 - observability/
 - llama-stack-operator/

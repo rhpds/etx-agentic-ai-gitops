@@ -10,12 +10,26 @@ spec: {}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{ .Values.username }}-llama-stack-edit
+  name: {{ .Values.username }}-edit
   namespace: {{ .Values.username }}-llama-stack
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: edit
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: {{ .Values.username }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ .Values.username }}-llama-stack-access
+  namespace: {{ .Values.username }}-llama-stack
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: llama-stack-access
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
