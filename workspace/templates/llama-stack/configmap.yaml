@@ -10,8 +10,23 @@ data:
     version: '2'
     image_name: vllm
     apis:
+    - inference
     - tool_runtime
+    models:
+      - metadata: {}
+        model_id: {{ .Values.defaultModel.name }}
+        provider_id: vllm-{{ .Values.defaultModel.name }}
+        provider_model_id: {{ .Values.defaultModel.name }}
+        model_type: llm
     providers:
+      inference:
+      - provider_id: vllm-{{ .Values.defaultModel.name }}
+        provider_type: "remote::vllm"
+        config:
+          url: {{ .Values.defaultModel.url }}
+          context_length: 4096
+          api_token: ${env.DEFAULT_MODEL_API_TOKEN}
+          tls_verify: true
       tool_runtime:
       - provider_id: tavily-search
         provider_type: remote::tavily-search

@@ -17,6 +17,11 @@ spec:
         value: http://otel-collector-collector.observability-hub.svc.cluster.local:4318
       - name: OTEL_SERVICE_NAME
         value: llamastack
+      - name: DEFAULT_MODEL_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: {{ .Values.defaultModel.name }}
+            key: apiKey
       # - name: LLAMA_3_2_3B_API_TOKEN
       #   valueFrom:
       #     secretKeyRef:

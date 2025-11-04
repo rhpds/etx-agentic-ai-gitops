@@ -27,10 +27,10 @@ spec:
           values: |
             username: '{{- "{{" }} user {{- " }}" }}'
             tavilySearchApiKey: '{{ .Values.tavilySearchApiKey }}'
+            {{- with .Values.defaultModel }}
+            defaultModel: {{ toYaml . | nindent 14 }}
+            {{- end }}
       destination:
         server: https://kubernetes.default.svc
-      syncPolicy:
-        automated:
-          prune: false
-          selfHeal: false
+      syncPolicy: {}
 {{- end }}

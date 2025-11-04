@@ -26,3 +26,8 @@ workspace:
     url: https://github.com/rhpds/etx-agentic-ai-gitops.git
     revision: main
     path: workspace
+
+defaultModel:
+  name: default-model-name
+  apiKey: default-model-key
+  url: https://default-model-maas-apicast-production.apps.maas.redhatworkshops.io:443/v1
