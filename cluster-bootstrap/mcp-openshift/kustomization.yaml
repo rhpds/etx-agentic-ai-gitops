@@ -1,0 +1,8 @@
+---
+namespace: mcp-openshift
+
+resources:
+  - serviceaccount.yaml
+  - rolebinding.yaml
+  - deployment.yaml
+  - service.yaml
