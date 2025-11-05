@@ -1,4 +1,9 @@
 ---
+commonAnnotations:
+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+#   argocd.argoproj.io/compare-options: IgnoreExtraneous
+#   argocd.argoproj.io/sync-options: Prune=false
+
 resources:
   - namespaces.yaml
 
