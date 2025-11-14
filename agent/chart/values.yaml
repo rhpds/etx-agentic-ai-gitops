@@ -1,0 +1,13 @@
+---
+namespace: userX-ai-agent
+registry: image-registry.openshift-image-registry.svc:5000
+application_name: ai-agent
+
+# Agent Configuration
+agentConfig:
+  clientTimeout: "600.0"
+  llamaStackUrl: "http://llamastack-with-config-service.userX-llama-stack.svc.cluster.local:8321"
+  maxInferIterations: "50"
+  maxTokens: "5000"
+  modelId: "granite-3-2-8b-instruct"
+  temperature: "0.0"
