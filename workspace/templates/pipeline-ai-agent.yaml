@@ -12,13 +12,12 @@ spec:
   - default: image-registry.openshift-image-registry.svc:5000/{{ .Values.username }}-ai-agent/ai-agent 
     name: IMAGE_NAME
     type: string
-  - default: https://github.com/redhat-ai-services/etx-agentic-ai.git
-    name: GIT_REPO
+  - name: GIT_REPO
     type: string
   - default: main 
     name: GIT_REVISION
     type: string
-  - default: code 
+  - default: agent/code
     name: PATH_CONTEXT
     type: string
   tasks:
