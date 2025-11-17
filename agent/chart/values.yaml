@@ -11,3 +11,4 @@ agentConfig:
   maxTokens: "5000"
   modelId: "granite-3-2-8b-instruct"
   temperature: "0.0"
+  githubOwner: "your-github-username"

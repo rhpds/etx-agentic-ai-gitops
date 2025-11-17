@@ -67,20 +67,5 @@ spec:
     workspaces:
     - name: source
       workspace: workspace
-  # - name: deploy
-  #   params:
-  #   - name: SCRIPT
-  #     value: oc rollout status deploy/$(params.APP_NAME)
-  #   runAfter:
-  #   - build
-  #   taskRef:
-  #     params:
-  #     - name: kind
-  #       value: task
-  #     - name: name
-  #       value: openshift-client
-  #     - name: namespace
-  #       value: openshift-pipelines
-  #     resolver: cluster
   workspaces:
   - name: workspace

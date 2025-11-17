@@ -11,3 +11,4 @@ data:
   MAX_TOKENS: {{ .Values.agentConfig.maxTokens | quote }}
   MODEL_ID: {{ .Values.agentConfig.modelId | quote }}
   TEMPERATURE: {{ .Values.agentConfig.temperature | quote }}
+  GITHUB_OWNER: {{ .Values.agentConfig.githubOwner | quote }}

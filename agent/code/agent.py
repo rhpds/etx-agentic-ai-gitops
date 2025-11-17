@@ -24,6 +24,7 @@ strategy = {"type": "greedy"}
 max_tokens = int(environ.get('MAX_TOKENS', '512'))
 client_timeout = float(environ.get('CLIENT_TIMEOUT', '600.0'))
 max_infer_iterations = int(environ.get('MAX_INFER_ITERATIONS', '10'))
+github_owner = environ.get('GITHUB_OWNER', 'redhat-ai-services')
 
 print(
     f'Inference Parameters:\n\tModel: {model_id}\n'
@@ -66,7 +67,7 @@ def run_agent(pod_name, namespace):
     #     "If the logs indicate an error search for the solution, " 
     #     "create a summary message with the category and explanation of the error, "
     #     'create a Github issue using {"name":"create_issue","arguments":'
-    #     '{"owner":"redhat-ai-services","repo":"etx-agentic-ai-gitops",'
+    #     f'{{"owner":"{github_owner}","repo":"etx-agentic-ai-gitops",'
     #     '"title":"Issue with Etx pipeline","body":"summary of the error"}}}. DO NOT add any optional parameters.'
     # ]
     # Build prompt safely to avoid f-string formatting issues
@@ -82,7 +83,7 @@ def run_agent(pod_name, namespace):
 
         Output:
         The pod is in an **ImagePullBackOff** state. This means Kubernetes could not pull the container image 'my-registry/frontend:latest', likely due to an incorrect image tag or authentication issues.
-        {{\"name\":\"create_issue\",\"arguments\":{{\"owner\":\"redhat-ai-services\",\"repo\":\"etx-agentic-ai-gitops\",\"title\":\"Issue with Etx pipeline\",\"body\":\"### Cluster/namespace location\\nwebapp/frontend-v2-abcde\\n\\n### Summary of the problem\\nThe pod is failing to start due to an ImagePullBackOff error.\\n\\n### Detailed error/code\\nImagePullBackOff: Back-off pulling image 'my-registry/frontend:latest'\\n\\n### Possible solutions\\n1. Verify the image tag 'latest' exists in the 'my-registry/frontend' repository.\\n2. Check for authentication errors with the image registry.\"}}}}
+        {{\"name\":\"create_issue\",\"arguments\":{{\"owner\":\"{github_owner}\",\"repo\":\"etx-agentic-ai-gitops\",\"title\":\"Issue with Etx pipeline\",\"body\":\"### Cluster/namespace location\\nwebapp/frontend-v2-abcde\\n\\n### Summary of the problem\\nThe pod is failing to start due to an ImagePullBackOff error.\\n\\n### Detailed error/code\\nImagePullBackOff: Back-off pulling image 'my-registry/frontend:latest'\\n\\n### Possible solutions\\n1. Verify the image tag 'latest' exists in the 'my-registry/frontend' repository.\\n2. Check for authentication errors with the image registry.\"}}}}
 
         ---
         EXAMPLE 2:
@@ -90,19 +91,19 @@ def run_agent(pod_name, namespace):
 
         Output:
         The pod is in a **CrashLoopBackOff** state because it was **OOMKilled**. The container tried to use more memory than its configured limit.
-        {{\"name\":\"create_issue\",\"arguments\":{{\"owner\":\"redhat-ai-services\",\"repo\":\"etx-agentic-ai-gitops\",\"title\":\"Issue with Etx pipeline\",\"body\":\"### Cluster/namespace location\\npipelines/data-processor-xyz\\n\\n### Summary of the problem\\nThe pod is in a CrashLoopBackOff state because it was OOMKilled (Out of Memory).\\n\\n### Detailed error/code\\nCrashLoopBackOff, Last state: OOMKilled\\n\\n### Possible solutions\\n1. Increase the memory limit in the pod's deployment configuration.\\n2. Analyze the application for memory leaks.\"}}}}
+        {{\"name\":\"create_issue\",\"arguments\":{{\"owner\":\"{github_owner}\",\"repo\":\"etx-agentic-ai-gitops\",\"title\":\"Issue with Etx pipeline\",\"body\":\"### Cluster/namespace location\\npipelines/data-processor-xyz\\n\\n### Summary of the problem\\nThe pod is in a CrashLoopBackOff state because it was OOMKilled (Out of Memory).\\n\\n### Detailed error/code\\nCrashLoopBackOff, Last state: OOMKilled\\n\\n### Possible solutions\\n1. Increase the memory limit in the pod's deployment configuration.\\n2. Analyze the application for memory leaks.\"}}}}
         ---
 
         NOW, YOUR TURN:
 
-        Input: Review the OpenShift logs for the pod '{pod_name}' in the '{namespace}' namespace. If the logs indicate an error, search for the solution, create a summary message with the category and explanation of the error, and create a Github issue using {{\"name\":\"create_issue\",\"arguments\":{{\"owner\":\"redhat-ai-services\",\"repo\":\"etx-agentic-ai-gitops\",\"title\":\"Issue with Etx pipeline\",\"body\":\"<summary of the error>\"}}}}. DO NOT add any optional parameters.
+        Input: Review the OpenShift logs for the pod '{pod_name}' in the '{namespace}' namespace. If the logs indicate an error, search for the solution, create a summary message with the category and explanation of the error, and create a Github issue using {{\"name\":\"create_issue\",\"arguments\":{{\"owner\":\"{github_owner}\",\"repo\":\"etx-agentic-ai-gitops\",\"title\":\"Issue with Etx pipeline\",\"body\":\"<summary of the error>\"}}}}. DO NOT add any optional parameters.
 
         ONLY tail the last 10 lines of the pod, no more.
         The JSON object formatted EXACTLY as outlined above.
         """
         
         # Safely format the prompt with variables
-        formatted_prompt = prompt_template.format(pod_name=pod_name, namespace=namespace)
+        formatted_prompt = prompt_template.format(pod_name=pod_name, namespace=namespace, github_owner=github_owner)
         print("✅ Prompt built successfully")
         print(f"Prompt length: {len(formatted_prompt)} characters")
         
@@ -115,7 +116,7 @@ def run_agent(pod_name, namespace):
         fallback_prompt = (
             f"Review the OpenShift logs for the pod '{pod_name}' in the '{namespace}' namespace. "
             "If the logs indicate an error, search for the solution and create a summary message. "
-            "Then create a Github issue with owner 'redhat-ai-services', repo 'etx-agentic-ai-gitops', "
+            f"Then create a Github issue with owner '{github_owner}', repo 'etx-agentic-ai-gitops', "
             "title 'Issue with Etx pipeline', and body containing the error summary."
         )
         user_prompts = [fallback_prompt]
