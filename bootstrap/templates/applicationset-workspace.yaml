@@ -35,4 +35,9 @@ spec:
       syncPolicy:
         automated:
           selfHeal: false
+      ignoreDifferences:
+      - group: core
+        kind: ConfigMap
+        jsonPointers:
+        - /data
 {{- end }}
