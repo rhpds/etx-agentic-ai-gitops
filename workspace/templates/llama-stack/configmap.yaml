@@ -46,11 +46,11 @@ data:
           responses_store:
             type: sqlite
             db_path: ${env.SQLITE_STORE_DIR:=~/.llama/distributions/starter}/responses_store.db
+    server:
+      port: 8321
     tools:
       - name: builtin::websearch
         enabled: true
     tool_groups:
     - provider_id: tavily-search
       toolgroup_id: builtin::websearch
-    server:
-      port: 8321
