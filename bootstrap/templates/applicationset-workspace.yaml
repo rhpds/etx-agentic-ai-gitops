@@ -35,9 +35,12 @@ spec:
       syncPolicy:
         automated:
           selfHeal: false
+        syncOptions:
+        - RespectIgnoreDifferences=true
       ignoreDifferences:
       - group: core
         kind: ConfigMap
+        name: llama-stack-config
         jsonPointers:
         - /data
 {{- end }}
