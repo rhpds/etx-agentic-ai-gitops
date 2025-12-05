@@ -28,7 +28,7 @@ spec:
             name: tavily-search-key
             key: tavily-search-api-key
     distribution:
-      #name: remote-vllm
-      image: quay.io/eformat/distribution-remote-vllm:0.2.15
+      name: remote-vllm
+      # image: quay.io/eformat/distribution-remote-vllm:0.2.15
     userConfig:
       configMapName: llama-stack-config
