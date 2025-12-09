@@ -5,5 +5,4 @@ kind: Kustomization
 resources:
 - rbac.yaml
 - observability/
-# - llama-stack-operator/
 - mcp-openshift/
