@@ -7,8 +7,6 @@ metadata:
 data:
   run.yaml: |
     # Llama Stack configuration
-    version: '2'
-    image_name: vllm
     apis:
     - inference
     - tool_runtime
