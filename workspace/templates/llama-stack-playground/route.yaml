@@ -12,7 +12,7 @@ spec:
     name: llama-stack-playground
     weight: 100
   port:
-    targetPort: proxy
+    targetPort: http
   tls:
-    termination: reencrypt
+    termination: edge
     insecureEdgeTerminationPolicy: Redirect

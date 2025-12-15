@@ -6,13 +6,12 @@ metadata:
   namespace: {{ .Values.username }}-llama-stack
   labels:
     app.kubernetes.io/name: llama-stack-playground
-  annotations:
-    service.alpha.openshift.io/serving-cert-secret-name: proxy-tls
 spec:
   type: ClusterIP
   ports:
-    - name: proxy
-      port: 443
-      targetPort: 8443
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
   selector:
     app.kubernetes.io/name: llama-stack-playground
