@@ -10,3 +10,6 @@ defaultModel:
   name: default-model-name
   apiKey: default-model-key
   url: https://default-model-maas-apicast-production.apps.maas.redhatworkshops.io:443/v1
+
+llamaStackPlayground:
+  image: quay.io/eformat/streamlit_client:0.2.15

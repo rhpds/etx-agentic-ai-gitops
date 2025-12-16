@@ -30,6 +30,10 @@ spec:
             {{- with .Values.defaultModel }}
             defaultModel: {{ toYaml . | nindent 14 }}
             {{- end }}
+            {{- if .Values.workspace.llamaStackPlaygroundImage }}
+            llamaStackPlayground:
+              image: '{{ .Values.workspace.llamaStackPlaygroundImage }}'
+            {{- end }}
       destination:
         server: https://kubernetes.default.svc
       syncPolicy:
